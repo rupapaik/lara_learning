@@ -19,26 +19,55 @@ class UserController extends Controller
 
   public function create(){
       $companies = Company::all();
+      $customer = new Customer();
 
-    return view('customers.create',compact('companies'));
+    return view('customers.create',compact('companies','customer'));
   }
 
   public function store(Request $request)
      {
-       $data = $request->validate([
-           'name' => 'required|max:25|min:4',
-           'email' => 'required|email',
-           'active' => 'required',
-           'company_id' => 'required',
-
-       ]);
+    //   dd($request);
+       // $data = $request->validate([
+       //     'name' => 'required|max:25|min:4',
+       //     'email' => 'required|email',
+       //     'active' => 'required',
+       //     'company_id' => 'required',
+       // ]);
       //  dd($data);
-     Customer::create($data);
+     // Customer::create($data);
+        Customer::create($this->validateRequest());
         // $customer = new Customer;
         // $customer->name=$request->name;
         // $customer->email=$request->email;
         // $customer->active=$request->active;
         // $customer->save();
-        return Redirect()->to('customers');
+        return redirect('customers');
+  }
+  public function show(Customer $customer){
+
+  //  $customer = Customer::find($customer);
+    // $customer = Customer::where('id',$customer)->firstorFail();
+   // dd($customer);
+   return view ('customers.show',compact('customer'));
+  }
+  public function edit(Customer $customer){
+      $companies = Company::all();
+       return view('customers.edit',compact('customer','companies'));
+
+  }
+
+  public function update(Request $request ,Customer $customer ){
+    $customer->update($this->validateRequest());
+
+    return redirect ('customers/'.$customer->id);
+
+  }
+  private function validateRequest(){
+    return request()-> validate([
+      'name' => 'required|max:25|min:4',
+      'email' => 'required|email',
+      'active' => 'required',
+      'company_id' => 'required',
+    ]);
   }
 }

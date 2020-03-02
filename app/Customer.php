@@ -6,9 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
-  protected $fillable = [
-   'name', 'email','active','company_id',];
+  protected $fillable = [ 'name', 'email','active','company_id',];
+
 // protected $guarded = [];
+protected $attributes = [ 'active' => 1];
 
 public function getActiveAttribute($attribute){
   return[
@@ -18,12 +19,12 @@ public function getActiveAttribute($attribute){
 }
 
 public function scopeActive($query){
-  return $query->where('active',1);
+    return $query->where('active',1);
 }
 public function scopeInactive($query){
-  return $query->where('active',0);
+    return $query->where('active',0);
 }
-  public function company (){
-  return $this->belongsTo(Company::class);
+  public function company(){
+    return $this->belongsTo(Company::class);
   }
 }

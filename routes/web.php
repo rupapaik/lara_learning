@@ -22,3 +22,6 @@ Route::view('contact','index');
 Route::get('customers','UserController@index');
 Route::get('customers/create','UserController@create');
 Route::post('customers','UserController@store');
+Route::get('customers/{customer}','UserController@show');
+Route::get('customers/{customer}/edit','UserController@edit');
+Route::Patch('customers/{customer}','UserController@update');
