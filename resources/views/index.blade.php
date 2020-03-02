@@ -1,1 +1,1 @@
-zxzvcn
+@extends('layout')

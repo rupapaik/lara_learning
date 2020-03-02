@@ -8,25 +8,11 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>@yield('title','Learning Laravel')</title>
   </head>
   <body>
-    <ul class="nav">
-         <li class="nav-item">
-           <a class="nav-link" href="/">Home</a>
-         </li>
-         <li class="nav-item">
-           <a class="nav-link" href="/about">About Us</a>
-         </li>
-         <li class="nav-item">
-           <a class="nav-link" href="contact">Contact Us</a>
-         </li>
-         <li class="nav-item">
-           <a class="nav-link" href="customers">Customers</a>
-         </li>
-   </ul>
-
 <div class="container">
+  @include('nav',['username'=>'cool-user-123'])
   @yield('content')
 </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
