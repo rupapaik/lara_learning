@@ -5,7 +5,12 @@
 <div class ="row">
   <div class="col-12">
     <h1>Details For {{$customer->name}}</h1>
-<p>  <a href="{{url('/customers/'.$customer->id)}}/edit">Edit</a></p>
+   <p><a href="{{url('/customers/'.$customer->id)}}/edit">Edit</a></p>
+   <form action="{{url('/customers/'.$customer->id)}}" method="POST">
+     @method('DELETE')
+     @csrf
+     <button type="submit" class="btn btn-success">Delete</button>
+   </form>
   </div>
 </div>
 <div class ="row">

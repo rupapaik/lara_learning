@@ -8,7 +8,7 @@
  </br>
 
  <div class="form-group">
-    <label for="name">Email </label>
+    <label for="email">Email </label>
     <input type="text" name="email" value = "{{old('email')?? $customer->email}}">
     <div>{{$errors->first('email')}}</div>
  </div>
@@ -17,9 +17,10 @@
   <label for="status">Status</label>
   <select name="active" id="active" class= "form-control">
     <option value=""disabled>Select Customer Status</option>
-    <option value="1"{{ $customer->active == 'Active' ? 'selected' : ''}}>Active</option>
-    <option value="0"{{ $customer->active == 'Inactive' ? 'selected' : ''}}>Inactive</option>
-  </select><br>
+    @foreach($customer ->activeOptions() as $activeOptionKey => $activeOptionValue)
+       <option value="{{$activeOptionKey}}"{{ $customer->active == $activeOptionValue ? 'selected' : ''}}>{{$activeOptionValue}}</option>
+    @endforeach
+  </select>
 </div>
   <div class="form-group">
      <label for="status">Company</label>

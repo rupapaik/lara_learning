@@ -15,13 +15,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::view('index','index');
-Route::view('about','about');
-Route::view('contact','index');
-//Route::resource('customers','CustomerController');
-Route::get('customers','UserController@index');
-Route::get('customers/create','UserController@create');
-Route::post('customers','UserController@store');
-Route::get('customers/{customer}','UserController@show');
-Route::get('customers/{customer}/edit','UserController@edit');
-Route::Patch('customers/{customer}','UserController@update');
+Route::get('/index', function () {
+    return view('index');
+});
+
+
+Route::get('/about', function () {
+    return view('about');
+});
+
+Route::get('contact','ContactFormController@create');
+Route::post('contact','ContactFormController@store');
+
+Route::resource('customers','UserController');
+// Route::get('customers','UserController@index');
+// Route::get('customers/create','UserController@create');
+// Route::post('customers','UserController@store');
+// Route::get('customers/{customer}','UserController@show');
+// Route::get('customers/{customer}/edit','UserController@edit');
+// Route::Patch('customers/{customer}','UserController@update');
+// Route::delete('customers/{customer}','UserController@destroy');

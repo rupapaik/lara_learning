@@ -53,7 +53,6 @@ class UserController extends Controller
   public function edit(Customer $customer){
       $companies = Company::all();
        return view('customers.edit',compact('customer','companies'));
-
   }
 
   public function update(Request $request ,Customer $customer ){
@@ -70,4 +69,9 @@ class UserController extends Controller
       'company_id' => 'required',
     ]);
   }
+  public function destroy(Customer $customer){
+    $customer->delete();
+    return redirect('customers');
+  }
+
 }
