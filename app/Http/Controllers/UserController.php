@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 use App\Company;
 use App\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\WelcomeNewUserMail;
+use App\Events\NewCustomerHasRegisteredEvent;
 class UserController extends Controller
 {
   public function index(){
@@ -35,13 +38,16 @@ class UserController extends Controller
        // ]);
       //  dd($data);
      // Customer::create($data);
-        Customer::create($this->validateRequest());
+      $customer =  Customer::create($this->validateRequest());
+
+        event(new NewCustomerHasRegisteredEvent($customer));
+
         // $customer = new Customer;
         // $customer->name=$request->name;
         // $customer->email=$request->email;
         // $customer->active=$request->active;
         // $customer->save();
-        return redirect('customers');
+       return redirect('customers');
   }
   public function show(Customer $customer){
 
